@@ -1,105 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
-<<<<<<< HEAD
       xmlns:th= "http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="'layout/LayoutPadrao'">
       
-<head></head>
+	<head>
+		<title>Cadastro de cerveja</title>
+	</head>	
 
 	<body>
 
 	<section layout:fragment="conteudo">
-=======
-      xmlns:th= "http://www.thymeleaf.org">
-<head>
-	<meta charset="UTF-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-	<title>Brewer!</title>
-
-	<link rel="stylesheet" type="text/css" href="/brewer/layout/stylesheets/vendors.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/brewer/layout/stylesheets/algaworks.min.css"/>
-	<link rel="stylesheet" type="text/css" href="/brewer/layout/stylesheets/application.css"/>
-
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-</head>
-
-	<body>
-	<div class="aw-layout-page">
-		<nav class="navbar  navbar-fixed-top  navbar-default  js-sticky-reference"	id="main-navbar">
-			<div class="container-fluid">
-
-				<div class="navbar-header">
-					<a class="navbar-brand  hidden-xs" href="#"> <img
-						alt="Cervejaria" src="/brewer/images/logo.png" />
-					</a>
-	
-					<ul class="nav  navbar-nav">
-						<li><a href="#" class="js-sidebar-toggle"><i
-								class="fa  fa-bars"></i></a></li>
-
-					</ul>
-				</div>
-			</div>
-		</nav>
-				<ul class="nav navbar-nav  navbar-right">
-					<li><a href="#"><em class="fa  fa-sign-out"></em></a></li>
-				</ul>
-
-			</div>
-	
-
-		<aside class="aw-layout-sidebar  js-sidebar">
-			<div class="aw-layout-sidebar__content">
-
-				<nav class="aw-menu  js-menu">
-					<ul class="aw-menu__list">
-
-						<li class="aw-menu__item"><a href="dashboard.html"><i
-								class="fa  fa-fw  fa-home"></i><span>Dashboard</span></a></li>
-
-						<li class="aw-menu__item  is-active"><a href="#"> <i
-								class="fa  fa-fw  fa-file-text"></i><span>Cadastros</span> <i
-								class="aw-menu__navigation-icon  fa"></i>
-						</a>
-
-							<ul class="aw-menu__list  aw-menu__list--sublist">
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="cadastro-produto.html">Cadastro de produto</a></li>
-								<li class="aw-menu__item  aw-menu__item--link  is-active"><a
-									href="pesquisa-produtos.html">Pesquisa de produtos</a></li>
-								<li class="aw-menu__item  aw-menu__item--link"><a
-									href="tabela-sem-dados.html">Tabela sem dados</a></li>
-							</ul></li>
-
-						<li class="aw-menu__item  is-expanded"><a href="#"> <i
-								class="fa  fa-fw  fa-file-text"></i><span>Páginas comuns</span>
-								<i class="aw-menu__navigation-icon  fa"></i>
-						</a>
-
-			<ul class="aw-menu__list  aw-menu__list--sublist">
-					<li class="aw-menu__item  aw-menu__item--link"><a href="pagina-vazia.html">Página vazia</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a href="login.html">Login</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a href="esqueceu-a-senha.html">Esqueceu a senha</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a href="403.html">403</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a href="404.html">404</a></li>
-						<li class="aw-menu__item  aw-menu__item--link"><a href="500.html">500</a></li>
-				</ul>			
-			</li>
-		</ul>
-			</nav>
-				</div>
-					</aside>
-
-	<section class="aw-layout-content  js-content">
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 
 		<div class="page-header">
 			<div class="container-fluid">
@@ -123,11 +34,7 @@
 					<div class="col-sm-2  form-group">
 						<label for="sku">SKU</label>
 						<input id="sku" type="text" class="form-control"/>
-<<<<<<< HEAD
 					</div >
-=======
-					</div>
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 
 					<div class="col-sm-10  form-group">
 						<label for="nome">Nome</label>
@@ -143,18 +50,14 @@
 			<div class="row">
 					<div class="col-sm-3  form-group">
 							<label for="estilo">Estilo</label>
-<<<<<<< HEAD
 						<div class = "bw-field-action">
-=======
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 								<select id ="estilo" class= "form-control">
 									<option value="">Selecione o estilo</option>
 									<option value="1">Pale lager</option>
 								</select>
-<<<<<<< HEAD
 								
 								<div class="bw-field-action__icon">
-									<a href="#">
+									<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoEstilo">
 										<i class="glyphicon  glyphicon-plus-sign  bw-glyphicon-larget"></i>										
 									</a>
 								</div>
@@ -175,24 +78,6 @@
 								<input id="teorAlcoolico" type="text" class="form-control js-decimal"/>
 								<div class="input-group-addon">%</div>
 							</div>
-=======
-					</div>
-							
-					<div class="col-sm-3  form-group">
-							<label for="sabor">Sabor</label>
-								<select id ="sabor" class= "form-control">
-									<option value="">Selecione o sabor</option>
-									<option value="1">Adocicado</option>
-								</select>
-					</div>
-							
-					<div class="col-sm-3  form-group">
-						<label for="teorAlcoolico">Teor Alcoolico</label>
-							<div class="input-group">
-								<input id="teorAlcoolico" type="text" class="form-control"/>
-								<div class="input-group-addon">%</div>
-							</div>
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 					</div>
 					
 					<div class="col-lg-3 col-sm-6 form-group">
@@ -217,11 +102,7 @@
 						<label for="preco">Preço</label>
 							<div class="input-group">
 								<div class="input-group-addon">R$</div>
-<<<<<<< HEAD
 								<input id="preco" type="text" class="form-control  js-decimal"/>
-=======
-								<input id="preco" type="text" class="form-control"/>
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 							</div>
 					</div>
 					
@@ -229,47 +110,25 @@
 						<label for="comissao">Comissão</label>
 							<div class="input-group">
 								<div class="input-group-addon">R$</div>
-<<<<<<< HEAD
 								<input id="comissao" type="text" class="form-control  js-decimal"/>
-=======
-								<input id="comissao" type="text" class="form-control"/>
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 							</div>
 					</div>
 					
 						<div class="col-sm-3  form-group">
 							<label for="estoque">Estoque</label>
-<<<<<<< HEAD
 							<input id="estoque" type="text" class="form-control  js-plain"/>
 						</div>
 			  </div>
-=======
-							<input id="estoque" type="text" class="form-control"/>
-						</div>
-			</div>
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 			
 						<div class="form-group">
 							<button class="btn  btn-primary" type="submit">Salvar</button>
 						</div>
-<<<<<<< HEAD
 			</form>
 		</div>
+		
+	<div th:replace="estilo/CadastroRapidoEstilo  :: modal"> </div>
+	
 </section>
 
-=======
-			
-			</form>
-		</div>
-	<!-- </div> -->
-</section>
-	<footer class="aw-layout-footer  js-content">
-		<div class="container-fluid">
-			<span class="aw-footer-disclaimer">&copy; 2016 AlgaWorks. Todos os direitos reservados.</span>
-		</div>
-	</footer>
-		<script src="/brewer/layout/javascripts/vendors.min.js"></script>
-		<script src="/brewer/layout/javascripts/algaworks.min.js"></script>	
->>>>>>> 941a79f73d4dba54dd60c128d050f4854aa63380
 	</body>
 </html>
