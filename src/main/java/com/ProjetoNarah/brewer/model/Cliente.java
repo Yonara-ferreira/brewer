@@ -7,6 +7,14 @@ public class Cliente {
 	private String tipoPessoa;
 	private String cpfOuCnpj;
 	private String telefone;
+	private String logradouro;
+	private String numero;
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
 	private String email;
 	
 	
@@ -46,6 +54,13 @@ public class Cliente {
 	public void setTipoPessoa(String tipoPessoa) {
 		this.tipoPessoa = tipoPessoa;
 	}
+	public String getLogradouro() {
+		return logradouro;
+	}
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+	
 	
 	
 	
