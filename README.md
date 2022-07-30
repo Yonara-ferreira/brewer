@@ -1,2 +1,4 @@
-# brewer
-Aprendendo um pouco mais sobre Spring MVC com o curso da Algaworks 
+Projeto Brewer (Distribuidora de cervejas)
+Projeto baseado em um dos cursos da AlgaWorks: Spring Framework Expert;
+
+O projeto tem como base uma cervejaria.
