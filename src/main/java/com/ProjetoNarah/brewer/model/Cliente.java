@@ -8,6 +8,8 @@ public class Cliente {
 	private String cpfOuCnpj;
 	private String telefone;
 	private String logradouro;
+	private String cidade;
+	private String estado;
 	private String numero;
 	public String getNumero() {
 		return numero;
@@ -60,6 +62,20 @@ public class Cliente {
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	
+	
 	
 	
 	

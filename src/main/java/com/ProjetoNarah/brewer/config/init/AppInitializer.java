@@ -1,4 +1,4 @@
-package com.ProjetoNarah.brewer.config.init;
+ package com.ProjetoNarah.brewer.config.init;
 
 import javax.servlet.Filter;
 
@@ -33,3 +33,4 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 		return new Filter[] {characterEncondingFilter};
 	}
 }
+

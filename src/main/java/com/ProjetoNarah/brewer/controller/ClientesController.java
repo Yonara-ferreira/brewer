@@ -24,13 +24,14 @@ public class ClientesController {
 			return novo(cliente);
 		}
 		
+		//salvar no banco de dados ..
+		
 		attributes.addFlashAttribute("mensagem","cliente cadastrado com sucesso");
 		System.out.println(">>> nome: " + cliente.getNome());
 		return "redirect:/clientes/novo";
 	}
 	
 	
-	//salvar no banco de dados ..
 	
 	
 }
