@@ -25,6 +25,7 @@ public class Cerveja {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
+	
 	@NotBlank(message = "SKU é obrigatorio")
 	private String sku;
 	

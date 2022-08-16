@@ -4,7 +4,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.lookup.JndiDataSourceLookup;
@@ -20,7 +19,6 @@ import com.ProjetoNarah.brewer.repository.Cervejas;
 
 @Configuration
 @EnableJpaRepositories (basePackageClasses = Cervejas.class)
-//@ComponentScan(basePackageClasses = Cervejas.class)
 public class JPAConfig {
 	
 	@Bean
@@ -35,8 +33,8 @@ public class JPAConfig {
 	public JpaVendorAdapter jpaVendorAdapter() {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
-		adapter.setShowSql(true);
-		adapter.setGenerateDdl(false);
+		adapter.setShowSql(false);// Mostrar log só do log4j2
+		adapter.setGenerateDdl(false); // Quem vai gerar será o FlyWay
 		adapter.setDatabasePlatform("org.hibernate.dialect.MySQLDialect");
 		return adapter;
 	}
@@ -51,6 +49,7 @@ public class JPAConfig {
 		
 		return factory.getObject();
 	}
+	
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
