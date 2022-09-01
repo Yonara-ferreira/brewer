@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ProjetoNarah.brewer.model.Estilo;
 import com.ProjetoNarah.brewer.repository.Estilos;
 import com.ProjetoNarah.brewer.service.CadastroEstiloService;
+import com.ProjetoNarah.brewer.service.exception.NomeEstiloJaCadastradoException;
 
 @Controller
 public class EstilosController {
@@ -39,10 +40,14 @@ public class EstilosController {
 		if(result.hasErrors()) {			
 			return novo(estilo);
 		}
-	
 		
-		cadastroEstiloService.salvar(estilo);
-		attributes.addFlashAttribute("mensagem", "Estilo salvo com sucesso!");
+		try {
+			cadastroEstiloService.salvar(estilo);
+			attributes.addFlashAttribute("mensagem", "Estilo salvo com sucesso!");
+		} catch (NomeEstiloJaCadastradoException e) {
+			result.rejectValue("nome", e.getMessage(), e.getMessage());
+			return novo(estilo);
+		}
 		return new ModelAndView ("redirect:/estilos/novo");
 	}							
 	
