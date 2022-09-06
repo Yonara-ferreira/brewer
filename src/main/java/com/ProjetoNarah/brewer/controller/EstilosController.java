@@ -22,6 +22,7 @@ import com.ProjetoNarah.brewer.service.CadastroEstiloService;
 import com.ProjetoNarah.brewer.service.exception.NomeEstiloJaCadastradoException;
 
 @Controller
+@RequestMapping("/estilos")
 public class EstilosController {
 	
 	@Autowired
@@ -32,7 +33,7 @@ public class EstilosController {
 	private CadastroEstiloService cadastroEstiloService;
 	
 
-	@RequestMapping(value = "/estilos/novo", method = RequestMethod.GET)	
+	@RequestMapping(value = "/novo", method = RequestMethod.GET)	
 	public ModelAndView novo(Estilo estilo) {
 		ModelAndView mv = new ModelAndView("estilos/CadastroEstilos");
 		mv.addObject("estilos", estilos.findAll());
@@ -40,7 +41,7 @@ public class EstilosController {
 		
 	}
 	
-	@RequestMapping(value = "/estilos/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Estilo estilo, BindingResult result, Model model, RedirectAttributes attributes) {
 		if(result.hasErrors()) {			
 			return novo(estilo);
@@ -54,21 +55,16 @@ public class EstilosController {
 			result.rejectValue("nome", e.getMessage(), e.getMessage());
 			return novo(estilo);
 		}
+		attributes.addFlashAttribute("mensagem", "Estilo salvo com sucesso ");
 		return new ModelAndView ("redirect:/estilos/novo");
 	}			
 	
-	@RequestMapping(value = "/estilos", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
+	@RequestMapping( method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE })
 	public @ResponseBody ResponseEntity <?> salvar(@RequestBody  @Valid  Estilo estilo, BindingResult result) {
 		if (result.hasErrors()) {
 			return ResponseEntity.badRequest().body(result.getFieldError("nome").getDefaultMessage());
 		}
-		
-		try {
 			estilo = cadastroEstiloService.salvar(estilo);
-		} catch (NomeEstiloJaCadastradoException e) {
-			return ResponseEntity.badRequest().body(e.getMessage());
-		}
-		
 			return ResponseEntity.ok(estilo);
 	}
 	
