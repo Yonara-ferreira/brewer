@@ -46,8 +46,6 @@ public class EstilosController {
 		if(result.hasErrors()) {			
 			return novo(estilo);
 		}
-		
-		
 		try {
 			cadastroEstiloService.salvar(estilo);
 			attributes.addFlashAttribute("mensagem", "Estilo salvo com sucesso!");
