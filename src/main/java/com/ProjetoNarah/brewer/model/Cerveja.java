@@ -28,6 +28,13 @@ import com.ProjetoNarah.brewer.validation.SKU;
 @Table(name = "cerveja")
 public class Cerveja {
 	
+	
+	private String foto;
+	
+	@Column(name = "content_type")
+	private String contentType;
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
@@ -175,6 +182,26 @@ public class Cerveja {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+		public String getFoto() {
+		return foto;
+	}
+
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+
+	public String getContentType() {
+		return contentType;
+	}
+
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
 
 		@Override
 		public int hashCode() {
