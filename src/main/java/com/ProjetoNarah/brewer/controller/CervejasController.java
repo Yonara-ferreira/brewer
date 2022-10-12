@@ -19,6 +19,7 @@ import com.ProjetoNarah.brewer.service.CadastroCervejaService;
 
 
 @Controller
+@RequestMapping("/cervejas")
 public class CervejasController {
 	
 	@Autowired
@@ -29,7 +30,7 @@ public class CervejasController {
 	private CadastroCervejaService cadastroCervejaService;
 	
 	
-	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.GET)
+	@RequestMapping(value = "/novo", method = RequestMethod.GET)
 	public ModelAndView novo(Cerveja cerveja) {
 		ModelAndView mv = new ModelAndView("cerveja/CadastroCerveja");
 		mv.addObject("estilos", estilos.findAll());
@@ -39,7 +40,7 @@ public class CervejasController {
 		return mv;
 	} 
 
-	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
+	@RequestMapping(value = "/novo", method = RequestMethod.POST)
 	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
 		if(result.hasErrors()) {
 			return novo(cerveja);
