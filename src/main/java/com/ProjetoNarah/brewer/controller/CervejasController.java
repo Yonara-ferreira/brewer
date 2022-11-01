@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ProjetoNarah.brewer.model.Cerveja;
 import com.ProjetoNarah.brewer.model.Origem;
 import com.ProjetoNarah.brewer.model.Sabor;
+import com.ProjetoNarah.brewer.repository.Cervejas;
 import com.ProjetoNarah.brewer.repository.Estilos;
 import com.ProjetoNarah.brewer.service.CadastroCervejaService;
 
@@ -29,6 +30,9 @@ public class CervejasController {
 	
 	@Autowired
 	private CadastroCervejaService cadastroCervejaService;
+	
+	@Autowired
+	private Cervejas cervejas;
 	
 	
 	@RequestMapping(value = "/novo", method = RequestMethod.GET)
@@ -59,6 +63,10 @@ public class CervejasController {
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("sabores", Sabor.values());
+		mv.addObject("origens", Origem.values());
+		
+		
+		mv.addObject("cervejas", cervejas.findAll());
 		return mv;
 	}
 	
