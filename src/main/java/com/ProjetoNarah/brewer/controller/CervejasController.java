@@ -17,6 +17,7 @@ import com.ProjetoNarah.brewer.model.Origem;
 import com.ProjetoNarah.brewer.model.Sabor;
 import com.ProjetoNarah.brewer.repository.Cervejas;
 import com.ProjetoNarah.brewer.repository.Estilos;
+import com.ProjetoNarah.brewer.repository.filter.CervejaFilter;
 import com.ProjetoNarah.brewer.service.CadastroCervejaService;
 
 
@@ -59,14 +60,14 @@ public class CervejasController {
 	}
 	
 	@GetMapping
-	public ModelAndView pesquisar() {
+	public ModelAndView pesquisar(CervejaFilter cervejaFilter, BindingResult result) {
 		ModelAndView mv = new ModelAndView("cerveja/PesquisaCervejas");
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("sabores", Sabor.values());
 		mv.addObject("origens", Origem.values());
 		
 		
-		mv.addObject("cervejas", cervejas.findAll());
+		mv.addObject("cervejas", cervejas.filtar(cervejaFilter));
 		return mv;
 	}
 	
