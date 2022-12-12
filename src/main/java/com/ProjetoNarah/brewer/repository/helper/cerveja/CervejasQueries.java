@@ -1,12 +1,15 @@
 package com.ProjetoNarah.brewer.repository.helper.cerveja;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.ProjetoNarah.brewer.model.Cerveja;
 import com.ProjetoNarah.brewer.repository.filter.CervejaFilter;
 
 public interface CervejasQueries {
 	
-	public List<Cerveja> filtar(CervejaFilter filtro);
+	public Page<Cerveja> filtar(CervejaFilter filtro, Pageable pageable);
+	
+	
 	
 }

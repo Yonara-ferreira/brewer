@@ -32,9 +32,8 @@
 				<form method="GET" th:object="${cervejaFilter}">
 					<div class="row">
 						<div class="form-group  col-sm-6">
-							<label class="control-label" for="sku">SKU</label> <input
-								type="text" class="form-control" id="sku" autofocus="autofocus"
-								th:field="*{sku}" />
+							<label class="control-label" for="sku">SKU</label>
+							 <input type="text" class="form-control" id="sku" autofocus="autofocus" th:field="*{sku}" />
 						</div>
 
 						<div class="form-group  col-sm-6">
@@ -111,7 +110,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="cerveja  : ${cervejas}">
+							<tr th:each="cerveja  : ${pagina.content}">
 								<td class="text-center"><img
 									th:src="@{/fotos/thumbnail.{foto}(foto=${cerveja.foto})}"
 									class="img-responsive" /></td>
@@ -126,7 +125,7 @@
 										class="glyphicon glyphicon-remove"></i>
 								</a></td>
 							</tr>
-							<tr th:if="${#lists.isEmpty(cervejas)}">
+							<tr th:if="${#lists.isEmpty(pagina.content)}">
 								<td colspan="7">Nenhuma cerveja encontrada</td>
 							</tr>
 
@@ -134,26 +133,19 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="col-sm-12  text-center">
+				<div class="col-sm-12  text-center" th:if="${not #lists.isEmpty(pagina.content)}">
 					<nav>
 						<ul class="pagination  pagination-sm">
 							<li class="disabled">
 								<a href="#"><span>&laquo;</span></a>
 							</li>
-							
-							<li class="active">
-								<a href="#">1</a>
-							</li>
-	
-							<li>
-								<a href="#">2</a>
-							</li>
-							
-							<li>
-								<a href="#">3</a>
-							</li>
-							
-							<li>
+							<th:block th:each="p : ${#numbers.sequence(1, pagina.totalPages)}">
+								<li>
+									<a th:href="|?page=${p - 1}| ">[[${p}]]</a>
+								</li>
+							</th:block>
+
+							<li class="disabled">
 								<a href="#"><span>&raquo;</span></a>
 							</li>
 						</ul>
