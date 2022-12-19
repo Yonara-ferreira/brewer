@@ -41,6 +41,7 @@ public class CervejasImpl  implements CervejasQueries {
 		criteria.setMaxResults(totalResgistroPorPagina);
 		
 		adicionarFiltro(filtro, criteria);
+		
 		return new PageImpl<>(criteria.list(), pageable, total(filtro));
 	}
 	

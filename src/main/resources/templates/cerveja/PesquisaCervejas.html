@@ -111,10 +111,10 @@
 						</thead>
 						<tbody>
 							<tr th:each="cerveja  : ${pagina.content}">
-								<td class="text-center"><img
-									th:src="@{/fotos/thumbnail.{foto}(foto=${cerveja.foto})}"
-									class="img-responsive" /></td>
-								<td class="text-center"></td>
+								<td class="text-center">
+									<img th:src="@{/fotos/thumbnail.{foto}(foto=${cerveja.foto})}" class="img-responsive" />
+								</td>
+								<td class="text-center" th:text="${cerveja.sku}"></td>
 								<td th:text="${cerveja.nome}"></td>
 								<td th:text="${cerveja.estilo.nome}"></td>
 								<td th:text="${cerveja.origem.descricao}"></td>
@@ -126,27 +126,28 @@
 								</a></td>
 							</tr>
 							<tr th:if="${#lists.isEmpty(pagina.content)}">
-								<td colspan="7">Nenhuma cerveja encontrada</td>
+								<td colspan="7" class="text-danger">Nenhuma cerveja encontrada!</td>
 							</tr>
 
 
 						</tbody>
 					</table>
 				</div>
+				
 				<div class="col-sm-12  text-center" th:if="${not #lists.isEmpty(pagina.content)}">
 					<nav>
-						<ul class="pagination  pagination-sm">
-							<li class="disabled">
-								<a href="#"><span>&laquo;</span></a>
+						<ul class="pagination  pagination-sm" th:with="paginaAtual=${pagina.number}">
+							<li th:class="${pagina.first} ? disabled">
+								<a th:href="|?page=${paginaAtual - 1}|" th:remove="${pagina.first} ? all"><span>&laquo;</span></a>
 							</li>
-							<th:block th:each="p : ${#numbers.sequence(1, pagina.totalPages)}">
-								<li>
-									<a th:href="|?page=${p - 1}| ">[[${p}]]</a>
+							<th:block th:each="p : ${#numbers.sequence(1, pagina.totalPages)}" th:with="numeroPagina=${p - 1}, paginaAtual=${pagina.number}">
+								<li th:class="${paginaAtual == numeroPagina} ? active">
+									<a th:href="|?page=${numeroPagina}| ">[[${p}]]</a>
 								</li>
 							</th:block>
 
-							<li class="disabled">
-								<a href="#"><span>&raquo;</span></a>
+							<li th:class="${pagina.last} ? disabled">
+								<a th:href="|?page=${paginaAtual + 1}|" th:remove="${pagina.last} ? all"><span>&raquo;</span></a>
 							</li>
 						</ul>
 					</nav>
