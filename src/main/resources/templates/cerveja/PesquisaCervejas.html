@@ -140,7 +140,11 @@
 							<li th:class="${pagina.first} ? disabled">
 								<a th:href="|?page=${paginaAtual - 1}|" th:remove="${pagina.first} ? all"><span>&laquo;</span></a>
 							</li>
+<<<<<<< HEAD
 							<th:block th:each="p : ${#numbers.sequence(1, pagina.totalPages)}" th:with="numeroPagina=${p - 1}, paginaAtual=${pagina.number}">
+=======
+							<th:block th:each="p : ${#numbers.sequence(1, pagina.totalPages)}" th: with="numeroPagina=${p - 1}, paginaAtual=${pagina.number}">
+>>>>>>> aef86a6ce56150dd52d8c10129fd7100de101480
 								<li th:class="${paginaAtual == numeroPagina} ? active">
 									<a th:href="|?page=${numeroPagina}| ">[[${p}]]</a>
 								</li>
