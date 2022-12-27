@@ -42,6 +42,8 @@ public class CervejasImpl  implements CervejasQueries {
 		criteria.setFirstResult(primeiroResgistro);
 		criteria.setMaxResults(totalResgistroPorPagina);
 		
+		
+		
 		Sort sort = pageable.getSort();
 		if(sort != null) {
 			Sort.Order order = sort.iterator().next();
