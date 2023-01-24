@@ -17,35 +17,57 @@ Brewer.MaskMoney = (function() {
 	
 }());
 
-Brewer.MaskPhoneNumber = (function(){
+Brewer.MaskPhoneNumber = (function() {
 	
-	function MaskPhoneNumber() {
-		this.inputPhoneNumber = $('.js-phone-number');
-	}
+    class MaskPhoneNumber {
+        constructor() {
+            this.inputPhoneNumber = $('.js-phone-number');
+        }
+        enable() {
+            var maskBehavior = function(val) {
+                return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+            };
+            var options = {
+                onKeyPress: function(_val, _e, field, options) {
+                    field.mask(maskBehavior.apply({}, arguments), options);
+                }
+            };
+            this.inputPhoneNumber.mask(maskBehavior, options);
+        }
+    }
 	
-	MaskPhoneNumber.prototype.enable = function(){
-		var maskBehavior = function (val) {
-			return val.replace(/\D/g,'').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-		},
-		
-		var options = {
-			onKeyPress: function(_val, _e, field, options){
-				field.mask(maskBehavior.apply({}, arguments), options);
-			}
-		};
-		
-		this.inputPhoneNumber.mask(maskBehavior, options);
-	}
 	
 	return MaskPhoneNumber;
 	
 }());
 
+Brewer.MaskCep = (function() {
+	
+    class MaskCep {
+        constructor() {
+            this.inputCep = $('.js-cep');
+        }
+        enable() {
+            this.inputCep.mask('00.000-000');
+        }
+    }
+	
+	
+	return MaskCep;
+	
+}());
+
+/* Função após a página ser carregada */
+
 $(function(){
 	var maskNumber = new Brewer.MaskMoney();
-	maskNumber.enable();
+		maskNumber.enable();
 	
 	var maskPhoneNumber = new Brewer.MaskPhoneNumber();
 		maskPhoneNumber.enable();
+		
+	var maskCep = new Brewer.MaskCep();
+		maskCep.enable();
 	
 });
+
