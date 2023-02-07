@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,16 +30,16 @@ public class CidadesController {
 		return "cidade/CadastroCidades";
 	}
 	
+	
 	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Cidade> pesquisarPorCodigoEstado(Long codigoEstado){
+	public @ResponseBody List<Cidade> pesquisarPorCodigoEstado(
+			@RequestParam(name = "estado", defaultValue = "-1") Long codigoEstado){
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {  }
 		return cidades.findByEstadoCodigo(codigoEstado);
 	}
 	
-	public String cadastrar(@Valid Cidade cidade, BindingResult result,RedirectAttributes attributes ) {
-		if(result.hasErrors()) {
-			return novo(cidade);
-		}
-		return null;
-	}
+	
 }
 
