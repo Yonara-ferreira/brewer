@@ -27,6 +27,7 @@ Brewer.ComboCidade = (function() {
 	}
 
 	ComboCidade.prototype.iniciar = function() {
+		reset.call(this);
 		this.comboEstado.on('alterado', onEstadoAlterado.bind(this));
 	}
 
@@ -42,6 +43,8 @@ Brewer.ComboCidade = (function() {
 			});
 			
 			resposta.done(onBuscarCidadesFinalizado.bind(this));
+		} else {
+			reset.call(this);
 		}
 	}
 	
@@ -53,10 +56,16 @@ Brewer.ComboCidade = (function() {
 		
 		this.combo.html(options.join(''));
 		this.combo.removeAttr('disabled');
-		
+	}
+	
+	function reset() {
+		this.combo.html('<option value="">Selecione a cidade</option>');
+		this.combo.val('');
+		this.combo.attr('disabled', 'disabled');
 	}
 
 	function iniciarRequisicao() {
+		reset.call(this);
 		this.imgLoading.show();
 	}
 
