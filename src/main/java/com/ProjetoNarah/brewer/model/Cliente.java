@@ -26,10 +26,10 @@ public class Cliente implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long codigo;
 	
-	@NotBlank(message = "Nome é obrigatorio")
+	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
 	
-	@NotNull
+	@NotNull(message = "Tipo Pessoa é obrigatório")
 	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_pessoa")
 	private TipoPessoa tipoPessoa;
