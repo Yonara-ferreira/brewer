@@ -1,7 +1,11 @@
 package com.ProjetoNarah.brewer.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,7 +20,7 @@ public class ClientesController {
 	@Autowired
 	private Estados estados;
 
-	@RequestMapping("novo")
+	@RequestMapping("/novo")
 	public ModelAndView novo (Cliente cliente) {
 		ModelAndView mv = new ModelAndView("clientes/CadastroCliente");
 		mv.addObject("tiposPessoa", TipoPessoa.values());
@@ -24,18 +28,13 @@ public class ClientesController {
 			return mv;
 	}
 	
-//	@RequestMapping(value ="/clientes/novo", method= RequestMethod.POST)
-//	public String cadastrar(@Valid Cliente cliente, BindingResult result, RedirectAttributes attributes) {
-//		if(result.hasErrors()) {
-//			return novo(cliente);
-//		}
-//		
-//		//salvar no banco de dados ..
-//		
-//		attributes.addFlashAttribute("mensagem","cliente cadastrado com sucesso");
-//		System.out.println(">>> nome: " + cliente.getNome());
-//		return "redirect:/clientes/novo";
-//	}
-	
+	@PostMapping("/novo")
+	public ModelAndView salvar(@Valid Cliente cliente, BindingResult result) {
+		if (result.hasErrors()) {
+			return novo(cliente);
+		}
+		
+		return new ModelAndView("redirect:/clientes/novo");
+	}
 	
 }
