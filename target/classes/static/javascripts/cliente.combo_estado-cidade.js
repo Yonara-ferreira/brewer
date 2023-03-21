@@ -19,43 +19,68 @@ Brewer.ComboEstado = (function() {
 }());
 
 Brewer.ComboCidade = (function() {
-
+	
 	function ComboCidade(comboEstado) {
 		this.comboEstado = comboEstado;
 		this.combo = $('#cidade');
 		this.imgLoading = $('.js-img-loading');
+		this.inputHiddenCidadeSelecionada = $('#inputHiddenCidadeSelecionada');
 	}
-
+	
 	ComboCidade.prototype.iniciar = function() {
 		reset.call(this);
+		
 		this.comboEstado.on('alterado', onEstadoAlterado.bind(this));
+		var codigoEstado = this.comboEstado.combo.val();
+		inicializarCidades.call(this, codigoEstado);
 	}
-
-	function onEstadoAlterado(_evento, codigoEstado) {
+	
+	function onEstadoAlterado(evento, codigoEstado) {
+		this.inputHiddenCidadeSelecionada.val('');
+		inicializarCidades.call(this, codigoEstado);
+	}
+	
+	function inicializarCidades(codigoEstado) {
 		if (codigoEstado) {
 			var resposta = $.ajax({
 				url: this.combo.data('url'),
 				method: 'GET',
 				contentType: 'application/json',
-				data: { 'estado': codigoEstado },
+				data: { 'estado': codigoEstado }, 
 				beforeSend: iniciarRequisicao.bind(this),
 				complete: finalizarRequisicao.bind(this)
 			});
-			
 			resposta.done(onBuscarCidadesFinalizado.bind(this));
 		} else {
 			reset.call(this);
 		}
 	}
 	
-	function onBuscarCidadesFinalizado(cidades){
+	function iniciarRequisicao() {
+		reset.call(this);
+		
+		this.imgLoading.show();
+	}
+	
+	function finalizarRequisicao() {
+		this.imgLoading.hide();
+	}
+	
+	function onBuscarCidadesFinalizado(cidades) {
 		var options = [];
+		
 		cidades.forEach(function(cidade) {
-			options.push('<option value"' + cidade.codigo + '">' + cidade.nome + '</option>');
+			options.push('<option value="' + cidade.codigo + '">' + cidade.nome + '</option>');
 		});
 		
 		this.combo.html(options.join(''));
 		this.combo.removeAttr('disabled');
+		
+		var codigoCidadeSelecionada = this.inputHiddenCidadeSelecionada.val();
+		
+		if (codigoCidadeSelecionada) {
+			this.combo.val(codigoCidadeSelecionada);
+		}
 	}
 	
 	function reset() {
@@ -63,19 +88,8 @@ Brewer.ComboCidade = (function() {
 		this.combo.val('');
 		this.combo.attr('disabled', 'disabled');
 	}
-
-	function iniciarRequisicao() {
-		reset.call(this);
-		this.imgLoading.show();
-	}
-
-	function finalizarRequisicao() {
-		this.imgLoading.hide();
-	}
-
+	
 	return ComboCidade;
-
-
 }());
 
 $(function() {

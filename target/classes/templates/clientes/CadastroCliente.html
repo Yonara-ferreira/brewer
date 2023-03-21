@@ -96,7 +96,7 @@
 			
 			<div class="col-sm-4 form-group">
 				<label for="estado">Estado</label>
-				<select id="estado" class="form-control">
+				<select id="estado" class="form-control" th:field="*{endereco.estado}">
 					<option value="">Selecione o estado</option>
 					<option th:each="estado : ${estados}" th:value="${estado.codigo}" th:text="${estado.nome}"></option>
 				</select>
@@ -106,9 +106,10 @@
 			<div class="col-sm-4 form-group">
 				<label for="cidade">Cidade</label>
 				<div class="bw-field-action">
+				<input type="hidden" id="inputHiddenCidadeSelecionada" th:value="*{endereco.cidade} != null ? *{endereco.cidade.codigo}">
 					<select id="cidade" class="form-control" data:url="@{/cidades}" th:field="*{endereco.cidade}">
-						<option value="">Selecione uma cidade</option>
 					</select>
+					
 						<div class="bw-field-action___icon   js-img-loading" style="display: none">
 							<img th:src="@{/images/mini-loading.gif}"/>
 						</div>
