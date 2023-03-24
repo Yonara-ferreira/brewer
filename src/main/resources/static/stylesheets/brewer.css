@@ -115,3 +115,28 @@
 .table-estilos-col-codigo {
 	width: 80px;
 }
+
+/* Colunas - Pesquisa de clientes */
+
+.table-clientes-col-nome {
+	width: 80px;
+	text-align: left;
+}
+
+.table-clientes-col-tipo-pessoa {
+	text-align: center;
+	margin-left: 10px;
+	width: 100px;
+}
+
+.table-clientes-col-cpf-cnpj {
+	text-align: right;
+	margin-left:10px;
+	width: 100px;
+}
+
+.table-clientes-col-telefone {
+	text-align: right;
+	margin-left:10%;
+	width: 100px;
+}
