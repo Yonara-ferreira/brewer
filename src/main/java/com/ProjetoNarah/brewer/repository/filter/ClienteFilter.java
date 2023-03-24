@@ -1,5 +1,6 @@
 package com.ProjetoNarah.brewer.repository.filter;
 
+import com.ProjetoNarah.brewer.model.TipoPessoa;
 
 public class ClienteFilter {
 	
@@ -19,9 +20,12 @@ public class ClienteFilter {
 	public void setCpfOuCnpj(String cpfOuCnpj) {
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
+	
+	public Object getCpfOuCnpjSemFormatacao() {
+		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
+	}
+	
 
-//	public Object getCpfOuCnpjSemFormatacao() {
-//		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
-//	}
+
 
 }

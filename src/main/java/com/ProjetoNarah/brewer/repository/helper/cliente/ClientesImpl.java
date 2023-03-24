@@ -2,7 +2,6 @@ package com.ProjetoNarah.brewer.repository.helper.cliente;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.criteria.JoinType;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -55,9 +54,9 @@ public class ClientesImpl implements ClientesQueries {
 				criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 			}
 
-//			if (!StringUtils.isEmpty(filtro.getCpfOuCnpj())) {
-//				criteria.add(Restrictions.eq("cpfOuCnpj", filtro.getCpfOuCnpjSemFormatacao()));
-//			}
+			if (!StringUtils.isEmpty(filtro.getCpfOuCnpj())) {
+				criteria.add(Restrictions.eq("cpfOuCnpj", filtro.getCpfOuCnpjSemFormatacao()));
+			}
 		}
 	}
 	

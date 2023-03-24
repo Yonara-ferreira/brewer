@@ -1,18 +1,25 @@
 package com.ProjetoNarah.brewer.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.ProjetoNarah.brewer.controller.page.PageWrapper;
 import com.ProjetoNarah.brewer.model.Cliente;
 import com.ProjetoNarah.brewer.model.TipoPessoa;
+import com.ProjetoNarah.brewer.repository.Clientes;
 import com.ProjetoNarah.brewer.repository.Estados;
+import com.ProjetoNarah.brewer.repository.filter.ClienteFilter;
 import com.ProjetoNarah.brewer.service.CadastroClienteService;
 import com.ProjetoNarah.brewer.service.exception.CpfCnpjClienteJaCadastradoException;
 
@@ -21,14 +28,18 @@ import com.ProjetoNarah.brewer.service.exception.CpfCnpjClienteJaCadastradoExcep
 public class ClientesController {
 	
 	@Autowired
-	private Estados estados;
+	private CadastroClienteService cadastroClienteService;
 	
 	@Autowired
-	private CadastroClienteService cadastroClienteService;
+	private Clientes clientes;
+	
+	@Autowired
+	private Estados estados;
+	
 
 	@RequestMapping("/novo")
 	public ModelAndView novo (Cliente cliente) {
-		ModelAndView mv = new ModelAndView("clientes/CadastroCliente");
+		ModelAndView mv = new ModelAndView("cliente/CadastroCliente");
 		mv.addObject("tiposPessoa", TipoPessoa.values());
 		mv.addObject("estados", estados.findAll());
 			return mv;
@@ -49,6 +60,17 @@ public class ClientesController {
 		
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!");
 		return new ModelAndView("redirect:/clientes/novo");
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar(ClienteFilter clienteFilter, BindingResult result, @PageableDefault(size = 3) Pageable pageable, HttpServletRequest httpServletRequest) {
+		ModelAndView mv = new ModelAndView("cliente/PesquisaClientes");
+		mv.addObject("tiposPessoa", TipoPessoa.values());
+
+		PageWrapper<Cliente> paginaWrapper = new PageWrapper<>(clientes.filtrar(clienteFilter, pageable), httpServletRequest);
+		mv.addObject("pagina", paginaWrapper);
+
+		return mv;
 	}
 	
 }
