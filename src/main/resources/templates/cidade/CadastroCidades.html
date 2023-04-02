@@ -30,26 +30,27 @@
 			</div>
 		</div>
 		
-		<div class="container-fluid">
-			<form method="POST" th:object="${cidade}">
-				<div class="row">
-					<div class="col-sm-4  form-group  bw-required">
-							<label for="estado" class="control-label">Estado</label> 
-								<select id="estado"class="form-control">
-									<option value="">Selecione o estado</option>
-								</select>
-					</div>
-				</div>
-			
-				<div class ="row">
-					<div class="col-sm-8 form-group bw-required">
-								<label for="nome" class="control-label">Nome</label> 
-								<input id="nome" type="text" class="form-control"/>
-						</div>
-				</div>
-			
-					<button type="submit" class="btn  btn-primary">Salvar</button>	
-				</form>
+			<div class="container-fluid">
+			    <form method="POST" th:object="${cidade}" th:action="@{/cidades/nova}">
+			        <brewer:message />
+			        
+			        <div class="row">
+			            <div class="form-group  col-sm-4  bw-required" brewer:classforerror="estado">
+			                <label for="estado" class="control-label">Estado</label>
+			                <select id="estado" class="form-control" th:field="*{estado}">
+			                    <option value="">Selecione o estado</option>
+			                    <option th:each="estado : ${estados}" th:value="${estado.codigo}" th:text="${estado.nome}">São Paulo</option>
+			                </select>
+			            </div>
+			            
+			            <div class="form-group  col-sm-8  bw-required" brewer:classforerror="nome">
+			                <label for="nome" class="control-label">Nome</label>
+			                <input type="text" class="form-control" id="nome" th:field="*{nome}"/>
+			            </div>
+			        </div>
+			        
+			        <button type="submit" class="btn  btn-primary">Salvar</button>
+			    </form>
 			</div>
 		</section>
 	</body>	
