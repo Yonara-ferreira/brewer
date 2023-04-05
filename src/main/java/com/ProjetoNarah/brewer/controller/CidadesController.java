@@ -35,8 +35,10 @@ public class CidadesController {
 	private Estados estados;
 
 	@RequestMapping(value ="/novo", method = RequestMethod.GET)
-	public String novo(Cidade cidade) {
-		return "cidade/CadastroCidades";
+	public ModelAndView nova(Cidade cidade) {
+		ModelAndView mv = new ModelAndView("cidade/CadastroCidades");
+		mv.addObject("estados", estados.findAll());
+		return mv;
 	}
 	
 	
