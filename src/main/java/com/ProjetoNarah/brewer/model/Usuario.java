@@ -30,7 +30,7 @@ public class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo; 
 	
-	@NotNull(message = "Nome é obrigatório!!!")
+	@NotBlank(message = "Nome é obrigatório!!!")
 	private String nome;
 	
 	@NotBlank(message = "Email é obrigatório")
@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
 	private String email;
 
 	@Size(min=5, max=15, message = "Senha nao corresponde com os requisitos" )
-	@NotBlank(message = "Por gentileza,insira uma senha!")
+	@NotNull(message = "Por gentileza,insira uma senha!")
 	private String senha;
 	
 	private boolean ativo;
@@ -49,7 +49,7 @@ public class Usuario implements Serializable {
 										, inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	private List<Grupo> grupos;
 	
-	@NotNull(message = "Data de nascimento é obrigatório")
+	
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
