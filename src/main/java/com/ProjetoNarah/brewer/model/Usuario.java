@@ -13,12 +13,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.ProjetoNarah.brewer.validation.AtributoConfirmacao;
+
+@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "confirmacaoSenha", message = "Confirmação de senha não confere")
 @Entity
 @Table(name="usuario")
 public class Usuario implements Serializable {
@@ -38,7 +42,6 @@ public class Usuario implements Serializable {
 	private String email;
 
 	@Size(min=5, max=15, message = "Senha nao corresponde com os requisitos" )
-	@NotNull(message = "Por gentileza,insira uma senha!")
 	private String senha;
 	
 	private boolean ativo;
@@ -48,6 +51,9 @@ public class Usuario implements Serializable {
 	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario")
 										, inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	private List<Grupo> grupos;
+	
+	@Transient
+	private String confirmacaoSenha;
 	
 	
 	@Column(name = "data_nascimento")
@@ -93,8 +99,6 @@ public class Usuario implements Serializable {
 		this.ativo = ativo;
 	}
 	
-	
-
 	public List<Grupo> getGrupos() {
 		return grupos;
 	}
@@ -110,6 +114,15 @@ public class Usuario implements Serializable {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
+	
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
+	}
+
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
+	}
+	
 
 	@Override
 	public int hashCode() {
@@ -135,6 +148,7 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
+
 	
 	
 	
