@@ -34,6 +34,9 @@ public class AtributoConfirmacaoValidator implements ConstraintValidator<Atribut
 			throw new RuntimeException("Erro ao recuperar os valores dos atributos", e);
 		}
 		
+		//código é usado para adicionar manualmente uma mensagem personalizada de 
+		//violação de restrição em um objeto em caso de não validação automática do Bean Validation.
+		
 		if(!valido) {
 			context.disableDefaultConstraintViolation();
 			
