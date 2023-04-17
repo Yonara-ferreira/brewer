@@ -15,6 +15,10 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/application.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/brewer.css}"/>
 	
+<!-- 	CALENDARIO NO CADASTRO DE USUARIO -->
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-datepicker.min.css}" />
+	
+	
 	<link rel="shortcut icon" th:href="@{/images/favicon.png}"/>
 	
 
@@ -48,6 +52,11 @@
 		<script th:src="@{/javascripts/vendors/jquery.mask.min.js}"></script>	<!-- javascript de terceiros -->
 		
 		<script th:src="@{/javascripts/brewer.js}"></script>	<!-- javascript que criei -->
+		
+		<!-- 	CALENDARIO NO CADASTRO DE USUARIO -->
+		
+		<script th:src="@{/javascripts/vendors/bootstrap-datepicker.min.js}"></script>
+		<script th:src="@{/javascripts/vendors/bootstrap-datepicker.pt-BR.min.js}"></script>
 		
 		<th:block layout:fragment="javascript-extra"></th:block>
 
