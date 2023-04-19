@@ -77,13 +77,14 @@
 			<div class="col-sm-6 form-group bw-required" brewer:classforerror="grupos">
 				<label class="control-label">Grupos</label>
 		<div>
-			<div class="radio  radio-inline">
-				<input type="radio" name="grupos"> <label>Administrador</label>
-			</div>
+			<th:block th:each="grupo : ${grupos}">
+				<div class="checkbox  checkbox-inline">
+					<input type="checkbox" th:value="${grupo.codigo}" th:field="*{grupos}"> 
+					<label th:for="${#ids.prev('grupos')}" th:text="${grupo.nome}">Administrador</label>
+				</div>
+			</th:block>
 			
-			<div class="radio  radio-inline">
-				<input type="radio" name="grupos"> <label>Vendedor</label>
-			</div>
+			
 		</div>	
 	</div>
 		
