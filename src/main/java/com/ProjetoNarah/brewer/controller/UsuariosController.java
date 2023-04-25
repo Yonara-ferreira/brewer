@@ -14,6 +14,7 @@ import com.ProjetoNarah.brewer.model.Usuario;
 import com.ProjetoNarah.brewer.repository.Grupos;
 import com.ProjetoNarah.brewer.service.CadastroUsuarioService;
 import com.ProjetoNarah.brewer.service.exception.EmailUsuarioJaCadastradoException;
+import com.ProjetoNarah.brewer.service.exception.SenhaObrigatorioUsuarioException;
 
 @Controller
 @RequestMapping("/usuarios")
@@ -43,6 +44,9 @@ public class UsuariosController {
 			attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso");
 		}catch(EmailUsuarioJaCadastradoException e) {
 			result.rejectValue("email", e.getMessage(), e.getMessage());
+			return novo(usuario);
+		}catch(SenhaObrigatorioUsuarioException e) {
+			result.rejectValue("senha", e.getMessage(), e.getMessage());
 			return novo(usuario);
 		}
 		

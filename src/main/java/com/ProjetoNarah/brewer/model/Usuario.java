@@ -14,7 +14,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -41,7 +40,7 @@ public class Usuario implements Serializable {
 	@Email(message = "E-mail invalido")
 	private String email;
 
-	@Size(min=5, max=15, message = "Senha nao corresponde com os requisitos" )
+
 	private String senha;
 	
 	private boolean ativo;
@@ -58,6 +57,8 @@ public class Usuario implements Serializable {
 	
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
+	
+	
 
 	public Long getCodigo() {
 		return codigo;
@@ -121,6 +122,10 @@ public class Usuario implements Serializable {
 
 	public void setConfirmacaoSenha(String confirmacaoSenha) {
 		this.confirmacaoSenha = confirmacaoSenha;
+	}
+	
+	public boolean isNovo() {
+		return codigo == null;
 	}
 	
 
