@@ -14,7 +14,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.ProjetoNarah.brewer.security.AppUserDetailsService;
 
-
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = AppUserDetailsService.class)
 public class SecurityConfig  extends WebSecurityConfigurerAdapter{
@@ -38,6 +37,8 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
+				.antMatchers("/cidades/nova").hasRole("CADASTRAR_CIDADE")
+				.antMatchers("/usuarios/nova", "/usuarios/**").hasRole("CADASTRAR_USUARIO")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
