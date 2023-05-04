@@ -33,7 +33,7 @@
 	
 	
 		
-		<form method="POST" th:object="${estilo}">
+		<form method="POST" th:object="${estilo}" th:action="@{estilos/novo}">
 		
 		<th:block th:include="fragments/MensagensErroValidacao"></th:block>
 		<th:block th:include="fragments/MensagensSucesso"></th:block>
