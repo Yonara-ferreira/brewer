@@ -4,7 +4,6 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
-import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import com.ProjetoNarah.brewer.config.JPAConfig;
@@ -31,11 +30,12 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Filter[] getServletFilters() {
-		CharacterEncodingFilter characterEncondingFilter = new CharacterEncodingFilter();
-		characterEncondingFilter.setEncoding("UTF-8");
-		characterEncondingFilter.setForceEncoding(true);
+		///		NÃO FUNCIONA NO SPRING SECURITY ///
+//		CharacterEncodingFilter characterEncondingFilter = new CharacterEncodingFilter();
+//		characterEncondingFilter.setEncoding("UTF-8");
+//		characterEncondingFilter.setForceEncoding(true);
 		
-		return new Filter[] {characterEncondingFilter};
+		return new Filter[] {};
 	}
 	
 	
